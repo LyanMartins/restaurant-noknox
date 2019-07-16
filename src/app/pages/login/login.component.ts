@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
 
   @Input() login:string;
   @Input() password:string;
+  request: any;
+
 
   constructor(private routes:Router,
               private loginService:LoginService) { }
@@ -20,14 +22,14 @@ export class LoginComponent implements OnInit {
 
   Login(){
     let user = this.loginService.getUsers(this.login);
-    console.log(user);
-    console.log("Login");
-    if(this.login == user.login && this.login == user.password){
-      console.log("logou");
+    if(this.login == user.login && this.password == user.password){
+      
+      this.loginService.getToken().subscribe(res => localStorage['token'] = res.access_token )
+      //localStorage['token'] = "xyz";
       this.routes.navigate(['']);
+
     }else{
-      console.log("login ou senha invalidos");
+      return false;
     }
   }
-
 }
