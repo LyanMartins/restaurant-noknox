@@ -9,6 +9,10 @@
         </select>
         <button (click)="findRestaurants()">find</button>
     </div>
+    <div>
+        <app-map-box></app-map-box>
+    </div>
+    
     <div *ngIf="restaurants" >
         <div *ngFor="let restaurant of restaurants">
             <div>
