@@ -1,1 +1,23 @@
-<p>home works!</p>
+<div>
+    <div>
+        <label for="">Localização atual:</label>
+    </div>
+    <div>
+        <label for="">Cuisine</label>
+        <select name="" id="" [(ngModel)]="ids">
+            <option *ngFor='let cuisine of cuisines' value="{{ cuisine.id }}">{{ cuisine.name }}</option>
+        </select>
+        <button (click)="findRestaurants()">find</button>
+    </div>
+    <div *ngIf="restaurants" >
+        <div *ngFor="let restaurant of restaurants">
+            <div>
+                <p>
+                    <strong>Name: </strong>{{restaurant.name}}
+                    <strong>Rate: </strong>{{restaurant.rating}}
+                </p>
+                <img src="{{restaurant.imageUrl}}" alt="" style="width: 10%">
+            </div>
+        </div>
+    </div>
+</div>

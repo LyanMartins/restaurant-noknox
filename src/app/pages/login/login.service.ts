@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class LoginService  {
 
-  private url = 'https://syqkl02isj.execute-api.us-east-1.amazonaws.com/dev';
 
   users: any = [{
     fullName: 'Lyan',
@@ -32,14 +31,14 @@ export class LoginService  {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
    
-    let path = '/token';
+    let path = 'dev/token';
     let body = {
       grant_type: 'password',
       username: 'noknox',
       password: 'noknox123A!'
     };
     
-    return this.http.post<any>(this.url+path,body,{
+    return this.http.post<any>(path,body,{
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       observe: 'body',
       responseType: 'json'
