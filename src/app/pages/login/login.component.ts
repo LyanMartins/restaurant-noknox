@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   Login(){
     let user = this.loginService.getUsers(this.login);
     if(this.login == user.login && this.password == user.password){
-      
+      console.log('aqui')
       this.loginService.getToken().subscribe(res => localStorage['token'] = res.access_token )
       //localStorage['token'] = "xyz";
       this.routes.navigate(['']);

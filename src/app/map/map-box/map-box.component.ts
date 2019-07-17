@@ -14,7 +14,7 @@ export class MapBoxComponent implements OnInit {
 
   //default
   map: mapboxgl.Map;
-  style: 'mapbox://styles/mapbox/streets-v11';
+  style: 'mapbox://styles/mapbox/outdoors-v9';
   lat: Number = -23.5601802;
   lng: Number = -46.6503273;
   message = "Maps";
@@ -26,52 +26,74 @@ export class MapBoxComponent implements OnInit {
   constructor(private mapService: MapService) { }
 
   ngOnInit() {
-    this.initializeMap()
-    this.map.invalidateSize();
-    this.map.resize();
+    this.initializeMap();
   }
 
   private initializeMap(){
-
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(position=>{
+    if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         this.map.flyTo({
-          center: [this.lat,this.lng]
+          center: [this.lng, this.lat]
         })
-      }) 
+      });
     }
+
     this.buildMap()
   }
 
   buildMap(){
     this.map = new mapboxgl.Map({
       container: 'map',
-      style: this.style,
-      zoon:13,
-      center: [this.lat,this.lng]
-    })
-
-    this.map.addControl(new mapboxgl.NavigationControl());
-
-    this.map.on('load', (event) => {
+      style: 'mapbox://styles/mapbox/streets-v11',
       
+      zoom: 13,
+      center: [-46.6503273, -23.5601802],
+    })
+    
+    this.map.on('load', (event) => {
+
+      /// register source
+      this.map.addSource('firebase', {
+         type: 'geojson',
+         data: {
+           type: 'FeatureCollection',
+           features: []
+         }
+      });
+
+      /// get source
+      this.source = this.map.getSource('firebase')
+
+      /// create map layers with realtime data
       this.map.addLayer({
-        id:'local',
-        source:'local',
-        type:'symbol',
-        layout:{
-          'text-field':'Local',
-          'icon-image':'rocket-15'
+        id: 'firebase',
+        source: 'firebase',
+        type: 'symbol',
+        layout: {
+          'text-field': '{message}',
+          'text-size': 24,
+          'text-transform': 'uppercase',
+          'icon-image': 'rocket-15',
+          'text-offset': [0, 1.5]
+        },
+        paint: {
+          'text-color': '#f16624',
+          'text-halo-color': '#fff',
+          'text-halo-width': 2
         }
       })
-  
+
     })
+
 
   } 
 
 
-
-
+ flyTo(data: GeoJson) {
+    this.map.flyTo({
+      center: data.geometry.coordinates
+    })
+  }
 }
