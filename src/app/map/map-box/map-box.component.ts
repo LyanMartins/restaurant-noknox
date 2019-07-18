@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeoJson,FeatureCollection } from '../map';
 import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../map.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -30,16 +31,15 @@ export class MapBoxComponent implements OnInit {
   }
 
   private initializeMap(){
-    if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(position => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        this.map.flyTo({
-          center: [this.lng, this.lat]
-        })
-      });
-    }
-
+    // if (navigator.geolocation) {
+    //    navigator.geolocation.getCurrentPosition(position => {
+    //     this.lat = position.coords.latitude;
+    //     this.lng = position.coords.longitude;
+    //     this.map.flyTo({
+    //       center: [this.lng, this.lat]
+    //     })
+    //   });
+    // }
     this.buildMap()
   }
 
@@ -55,7 +55,7 @@ export class MapBoxComponent implements OnInit {
     this.map.on('load', (event) => {
 
       /// register source
-      this.map.addSource('firebase', {
+      this.map.addSource('local', {
          type: 'geojson',
          data: {
            type: 'FeatureCollection',
@@ -64,15 +64,15 @@ export class MapBoxComponent implements OnInit {
       });
 
       /// get source
-      this.source = this.map.getSource('firebase')
-
+      this.source = this.map.getSource('local')
+      
       /// create map layers with realtime data
       this.map.addLayer({
-        id: 'firebase',
-        source: 'firebase',
+        id: 'local',
+        source: 'local',
         type: 'symbol',
         layout: {
-          'text-field': '{message}',
+          'text-field': '',
           'text-size': 24,
           'text-transform': 'uppercase',
           'icon-image': 'rocket-15',

@@ -1,26 +1,27 @@
 <div>
-    <div>
-        <label for="">Localização atual:</label>
+    <div class="find">
+        <span>Select cuisine</span>
+        <div class="select">
+            <ng-select  [multiple]="true" name="" id="" [(ngModel)]="ids" >
+                <ng-option *ngFor='let cuisine of cuisines' value="{{ cuisine.id }}">{{ cuisine.name }}</ng-option>
+            </ng-select>
+            <button (click)="findRestaurants()"><i class="fas fa-search"></i></button>
+        </div>
     </div>
-    <div>
-        <label for="">Cuisine</label>
-        <select name="" id="" [(ngModel)]="ids">
-            <option *ngFor='let cuisine of cuisines' value="{{ cuisine.id }}">{{ cuisine.name }}</option>
-        </select>
-        <button (click)="findRestaurants()">find</button>
-    </div>
-    <div>
+    <div class="map-card">
         <app-map-box></app-map-box>
     </div>
     
-    <div *ngIf="restaurants" >
-        <div *ngFor="let restaurant of restaurants">
-            <div>
+    <div class="row" *ngIf="restaurants" >
+        <div class="card-group">
+            <div class="card" *ngFor="let restaurant of restaurants ">
                 <p>
-                    <strong>Name: </strong>{{restaurant.name}}
-                    <strong>Rate: </strong>{{restaurant.rating}}
+                    <strong>{{restaurant.name}}</strong><br>
+                    <i class="fas fa-star"></i>{{restaurant.rating}} 
                 </p>
-                <img src="{{restaurant.imageUrl}}" alt="" style="width: 10%">
+                <div class="img">
+                    <img src="{{restaurant.imageUrl != '' ? restaurant.imageUrl : 'https://a.imge.to/2019/07/18/1Lpt0.jpg'}}" alt="">
+                </div>
             </div>
         </div>
     </div>

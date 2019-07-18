@@ -30,6 +30,12 @@ export class HomeComponent implements OnInit {
     this.homeService.getCuisine(this.lat,this.log).subscribe(res => this.cuisines = res);
   }
   findRestaurants(){
+    console.log(this.ids)
     this.homeService.getRestaurant(this.lat,this.log,this.ids).subscribe(res => this.restaurants = res);
   }
+
+  showSelect(){
+
+  }
+
 } 
