@@ -10,5 +10,5 @@ Apos instalar o node rode o comando `npm install -g @angular/cli` dentro do proj
 
 Depois disso e preciso baixar as dependencias do node, para isso rode o comando `npm i`.
 
-Se tudo estiver certo rode o comando `ng serve` para iniciarn o projeto.
+Se tudo estiver certo rode o comando `npm rum start` para iniciarn o projeto.
 

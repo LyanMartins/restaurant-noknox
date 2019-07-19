@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../../../environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,16 +9,7 @@ import { Observable } from 'rxjs';
 export class LoginService  {
 
 
-  users: any = [{
-    fullName: 'Lyan',
-    login:'lyanmartins',
-    password:'adm123'
-  },
-  {
-    fullName:'Administrador',
-    login:"admim",
-    password:'admim'
-  }]
+  users: any = environment.users;
   constructor(private http: HttpClient) { }
 
   getUsers(login:string){

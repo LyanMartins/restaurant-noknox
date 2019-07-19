@@ -30,14 +30,18 @@ export class LoginComponent implements OnInit {
   }
 
   Login(){
+    console.log('entrou')
     let user = this.loginService.getUsers(this.login);
     if(user){
       if(this.login == user.login && this.password == user.password){
         console.log('aqui')
-        this.loginService.getToken().subscribe(res => localStorage['token'] = res.access_token )
-        //localStorage['token'] = "xyz";
-        this.routes.navigate(['']);
-  
+        this.loginService.getToken().subscribe((res) =>{
+          localStorage['token'] = res.access_token
+          this.redirect();
+        })
+        
+       
+        
       }else{
         this.message = "Enter a valid username and password!"
       }
@@ -45,5 +49,8 @@ export class LoginComponent implements OnInit {
       this.message = "Enter a valid username and password!"
     }
     
+  }
+  redirect(){
+    this.routes.navigate(['']);
   }
 }
