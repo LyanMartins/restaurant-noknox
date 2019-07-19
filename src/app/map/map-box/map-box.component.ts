@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeoJson,FeatureCollection } from '../map';
 import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../map.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { HomeComponent } from 'src/app/pages/home/home.component';
 
 
 @Component({
@@ -24,22 +24,15 @@ export class MapBoxComponent implements OnInit {
   source: any;
   markers: any;
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService,
+              private homeComponent: HomeComponent) { }
 
   ngOnInit() {
     this.initializeMap();
   }
 
   private initializeMap(){
-    // if (navigator.geolocation) {
-    //    navigator.geolocation.getCurrentPosition(position => {
-    //     this.lat = position.coords.latitude;
-    //     this.lng = position.coords.longitude;
-    //     this.map.flyTo({
-    //       center: [this.lng, this.lat]
-    //     })
-    //   });
-    // }
+
     this.buildMap()
   }
 
@@ -47,43 +40,39 @@ export class MapBoxComponent implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      
       zoom: 13,
       center: [-46.6503273, -23.5601802],
     })
-    
+    this.map.on('click', (event) => {
+      const coordinates = [event.lngLat.lng, event.lngLat.lat]
+      const newLocal   = new GeoJson(coordinates, { message: this.message })
+      this.markers.remove();
+      this.markers.setLngLat(coordinates).addTo(this.map)
+      //marker.setLngLat(coordinates).addTo(this.map);
+      this.flyTo(newLocal)
+      let newLoction = this.homeComponent.newLocalization(event.lngLat.lng,event.lngLat.lat)
+      if(newLoction){
+        this.homeComponent.allCuisine();
+      }
+
+    })
     this.map.on('load', (event) => {
 
-      /// register source
       this.map.addSource('local', {
-         type: 'geojson',
-         data: {
-           type: 'FeatureCollection',
-           features: []
-         }
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [{
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [this.lng, this.lat],
+              },
+            }]
+          }
       });
-
-      /// get source
-      this.source = this.map.getSource('local')
       
-      /// create map layers with realtime data
-      this.map.addLayer({
-        id: 'local',
-        source: 'local',
-        type: 'symbol',
-        layout: {
-          'text-field': '',
-          'text-size': 24,
-          'text-transform': 'uppercase',
-          'icon-image': 'rocket-15',
-          'text-offset': [0, 1.5]
-        },
-        paint: {
-          'text-color': '#f16624',
-          'text-halo-color': '#fff',
-          'text-halo-width': 2
-        }
-      })
+      this.markers = new mapboxgl.Marker().setLngLat([this.lng, this.lat]).addTo(this.map);
 
     })
 

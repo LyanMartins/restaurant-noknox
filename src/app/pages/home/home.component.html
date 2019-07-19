@@ -1,3 +1,4 @@
+
 <div>
     <div class="find">
         <span>Select cuisine</span>
@@ -19,7 +20,7 @@
                     <strong>{{restaurant.name}}</strong><br>
                     <i class="fas fa-star"></i>{{restaurant.rating}} 
                 </p>
-                <div class="img">
+                <div class="img" (click)="redirectTo( restaurant.url )">
                     <img src="{{restaurant.imageUrl != '' ? restaurant.imageUrl : 'https://a.imge.to/2019/07/18/1Lpt0.jpg'}}" alt="">
                 </div>
             </div>

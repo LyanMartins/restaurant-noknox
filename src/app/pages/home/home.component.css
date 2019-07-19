@@ -44,9 +44,8 @@
 }
 .row{
     width: 100%;
-    height: 100%;
     position: absolute;
-    top: 60%;
+    top: 63%;
     margin-left: 2%;
 }
     .card{
@@ -77,6 +76,27 @@
         .fa-star{
             color: yellow
         }
+.loading{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: white
+}
+    .loading i{
+        position: relative;
+        font-size: 36px;
+        color: gray;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50% -50%);
+        -webkit-animation:spin 4s linear infinite;
+        -moz-animation:spin 4s linear infinite;
+        animation:spin 4s linear infinite;
+    }
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 @media (min-width: 1024px) and (max-width:1300px){
     .card{
@@ -126,5 +146,21 @@
     .card{
         width:94%;       
     }
-       
+    .find{
+        width: 80%;
+    }
+        .select button{
+            right: 10px;    
+            font-size: 26px;
+        }
+
+   .card > .img > img{
+       width: 60%;
+       height: 155px;
+       left: 50%;
+       transform: translateX(-50%);
+       position: relative;
+   }
+   
 }
+

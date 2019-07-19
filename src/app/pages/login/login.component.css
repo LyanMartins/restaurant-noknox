@@ -1,0 +1,73 @@
+h1{
+    text-align: center;
+    margin: 5%;
+    font-weight: 100
+}
+    h1 span{
+        font-size: 18px;
+        line-height: 0px
+
+    }
+.card{
+    width: 500px;
+    height: 40%;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+    .input-form{
+        
+    }
+        .input-form:focus{
+            outline: 0;
+            -webkit-box-shadow: none ! important;
+            box-shadow:#33f51e ! important;
+
+        }
+    .btn-primary{
+        margin: 25px 5% 0 5%;
+        float: right
+    }
+    
+@media (min-width: 480px) and (max-width:580px){
+    .card{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px ) {
+    h1{
+        font-size: 24px;
+        text-align: center;
+        margin: 5%;
+        font-weight: 100
+    }
+        h1 span{
+            font-size: 14px;
+            line-height: 0px
+    
+        }
+        
+    
+    .card{
+        width: 80%;
+        height: 35%;
+    }
+        .input-form{
+            height: 24px;
+            font-size: 14px;
+        }
+        .input-form:focus{
+            outline: 0;
+            -webkit-box-shadow: none ! important;
+            box-shadow:#33f51e ! important;
+
+        }
+    .btn-primary{
+        margin: 25px 5% 0 5%;
+        float: right;
+        font-size: 14px;
+    }
+   
+}
