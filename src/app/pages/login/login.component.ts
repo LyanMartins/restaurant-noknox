@@ -2,6 +2,7 @@ import { Component, OnInit, Input, HostBinding  } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { trigger, style, state, transition, animate } from '@angular/animations';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -34,13 +35,12 @@ export class LoginComponent implements OnInit {
     let user = this.loginService.getUsers(this.login);
     if(user){
       if(this.login == user.login && this.password == user.password){
-        console.log('aqui')
+        
         this.loginService.getToken().subscribe((res) =>{
           localStorage['token'] = res.access_token
+          environment.auth = res.access_token
           this.redirect();
         })
-        
-       
         
       }else{
         this.message = "Enter a valid username and password!"

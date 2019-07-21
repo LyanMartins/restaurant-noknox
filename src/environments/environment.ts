@@ -3,9 +3,32 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
 
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoibHlhbm1hcnRpbnMiLCJhIjoiY2p5NmthajdnMGVjZzNxcHRtOTg1MHl1NiJ9.ZvzYhogVQX2vF5igf7rqyg'
+  },
+  users: [
+  	{
+    	fullName: 'Lyan',
+    	login:'lyanmartins',
+    	password:'adm123'
+  	},
+  	{
+    	fullName:'Administrador',
+  	    login:"admim",
+    	password:'admim'
+  	},
+  	{
+  		fullName:'noknox',
+  		login:"admim",
+    	password:'noknox123A!'
+  	}
+	],
+	auth:{
+		
+	}
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

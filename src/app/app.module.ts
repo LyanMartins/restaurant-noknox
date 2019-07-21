@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MapBoxComponent } from './map/map-box/map-box.component';
 import { LoadingComponent } from './pages/loading/loading.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoadingComponent } from './pages/loading/loading.component';
     LoginComponent,
     HomeComponent,
     MapBoxComponent,
-    LoadingComponent
+    LoadingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

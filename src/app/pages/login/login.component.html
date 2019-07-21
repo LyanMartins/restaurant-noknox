@@ -1,5 +1,8 @@
 
 <div class="card">
+    <div>
+        <i><img src="../../../assets/restaurant.png" class="login-icon"alt=""></i>        
+    </div>
     <h1>
         {{ 'Restaurant' | uppercase}}<br>
         <span>{{ 'Noknox' | uppercase}}</span>
@@ -12,6 +15,7 @@
     <input class="input-form" type="text" [(ngModel)]="login" placeholder="username">
     <input class="input-form" type="password" [(ngModel)]="password" placeholder="password">
     <button class="btn-primary"  (click)="Login()"> <i class="fas fa-sign-in-alt"></i> Log in</button>
+    <a [routerLink]="['/register']" class="register">Register</a>
 
     
 </div>

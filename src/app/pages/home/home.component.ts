@@ -38,7 +38,9 @@ export class HomeComponent implements OnInit {
   }
   newLocalization(lng,lat){
     try {
-
+      this.cuisines = [];
+      this.restaurants = [];
+      this.ids = '';
       this.lat = lat;this.log = lng;
       return true;
     } catch (error) {

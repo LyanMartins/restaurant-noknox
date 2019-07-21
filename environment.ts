@@ -20,5 +20,8 @@ export const environment = {
   		login:"admim",
     	password:'noknox123A!'
   	}
-  ]
+	],
+	auth:{
+		
+	}
 }

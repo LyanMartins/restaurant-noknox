@@ -1,0 +1,17 @@
+
+<div class="card">
+
+    <h1>
+        {{ 'sign In' | uppercase}}<br>
+    </h1>
+
+    <div class="alert-error" [@FadeInOut]="message ? 'open' : 'closed'" >
+        {{ message }}
+    </div>
+    
+    <input class="input-form" type="text" [(ngModel)]="name" placeholder="Full name">
+    <input class="input-form" type="text" [(ngModel)]="login" placeholder="Username">
+    <input class="input-form" type="password" [(ngModel)]="password" placeholder="Password">
+    <button class="btn-primary"  (click)="register()"> <i class="fas fa-sign-in-alt"></i> Register</button>
+    
+</div>
